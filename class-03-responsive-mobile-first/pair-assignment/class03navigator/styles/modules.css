@@ -62,22 +62,23 @@
          - Just, ya know, try to make it look good! */
 /* @media only screen... */
 
-@media only screen and (min-width: 400px) and (max-width: 800px) {
+@media only screen and (min-width: 800px){
 
 .icon-menu {
-  display: block;
+  display: none;
 }
 
-.inactive {
-  display: none;
+.main-nav {
+  padding: 0.1em;
 }
 
 .main-nav ul {
-  display: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
   padding: 0;
   list-style: none;
-  clear: left;
+  clear: both;
 }
-
 
 }
