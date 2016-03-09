@@ -81,4 +81,11 @@
   clear: both;
 }
 
+.main-nav li {
+  display: inline-block;
+  margin-right: 1em;
+  padding: 1em;
+}
+
+
 }
