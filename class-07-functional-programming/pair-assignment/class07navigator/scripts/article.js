@@ -1,5 +1,7 @@
-// TODO: Wrap the entire contents of this file in an IIFE.
+// DONE: Wrap the entire contents of this file in an IIFE.
 // Pass in to the IIFE a module, upon which objects can be attached for later access.
+(function(module) {
+
 function Article (opts) {
   this.author = opts.author;
   this.authorUrl = opts.authorUrl;
@@ -45,15 +47,16 @@ Article.loadAll = function(rawData) {
 // to execute once the loading of articles is done. We do this because we might want
 // to call other view functions, and not just the initIndexPage() that we are replacing.
 // Now, instead of calling articleView.initIndexPage(), we can simply run our callback.
-Article.fetchAll = function() {
+
+Article.fetchAll = function(next) {
   if (localStorage.rawData) {
     Article.loadAll(JSON.parse(localStorage.rawData));
-    articleView.initIndexPage();
+    next();
   } else {
     $.getJSON('/data/hackerIpsum.json', function(rawData) {
       Article.loadAll(rawData);
       localStorage.rawData = JSON.stringify(rawData); // Cache the json, so we don't need to request it next time.
-      articleView.initIndexPage();
+      next();
     });
   }
 };
@@ -61,13 +64,13 @@ Article.fetchAll = function() {
 // TODO: Chain together a `map` and a `reduce` call to get a rough count of all words in all articles.
 Article.numWordsAll = function() {
   return Article.all.map(function(article) {
-    return // Grab the words from the `article` `body`.
+    return article.body.split('').length;
   })
-  .reduce(function(a, b) {
-    return // Sum up all the values!
-  })
-};
-
+    .reduce(function(prev, curr) {
+      return curr + prev
+    }, 0);
+    console.log('The total number of words is: ' + totalWords);
+  };
 // TODO: Chain together a `map` and a `reduce` call to produce an array of unique author names.
 Article.allAuthors = function() {
   return       // Don't forget to read the docs on map and reduce! You can reference the previous
@@ -88,3 +91,6 @@ Article.numWordsByAuthor = function() {
     }
   })
 };
+
+  module.Article = Article;
+})(window);
