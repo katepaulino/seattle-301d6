@@ -113,9 +113,10 @@
     articleView.setTeasers();
   };
 
-  articleView.initAdminPage = function() {
-    // TODO: Call the Handlebars `.compile` function, which will return a function for you to use where needed.
-    var template; // = ...?
+  articleView.initAdminPage = function(toPage) {
+    // DONE: Call the Handlebars `.compile` function, which will return a function for you to use where needed.
+    var template = Handlebars.compile($'#article-view').text());
+    toPage();
 
     // DONE: We use `forEach` here because we are relying on the side-effects of the callback function:
     // appending to the DOM.

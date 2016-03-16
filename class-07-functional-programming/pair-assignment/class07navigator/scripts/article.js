@@ -42,7 +42,7 @@ Article.loadAll = function(rawData) {
 // This function will retrieve the data from either a local or remote source,
 // and process it, then hand off control to the View.
 
-// TODO: Refactor this function, and provide it with a parameter of a callback function
+// DONE: Refactor this function, and provide it with a parameter of a callback function
 //(for now just a placeholder, but to be referenced at call time as a view function)
 // to execute once the loading of articles is done. We do this because we might want
 // to call other view functions, and not just the initIndexPage() that we are replacing.
@@ -69,11 +69,10 @@ Article.numWordsAll = function() {
     .reduce(function(acc, cur) {
       return cur + acc
     }, 0);
-    console.log('The total number of words is: ' + totalWords);
   };
 // DONE: Chain together a `map` and a `reduce` call to produce an array of unique author names.
 Article.allAuthors = function() {
-  return Article.allAuthors().map(function(article) {
+  return Article.all.map(function(article) {
     return article.author;
     })
     .reduce (function(acc, cur) {
@@ -82,16 +81,24 @@ Article.allAuthors = function() {
     }, []);
   };
 Article.numWordsByAuthor = function() {
-  // TODO: Transform each author string into an object with 2 properties: One for
+  // DONE: Transform each author string into an object with 2 properties: One for
   // the author's name, and one for the total number of words across the matching articles
   // written by the specified author.
   return Article.allAuthors().map(function(author) {
-    return {
-      // name:
-      // numWords: someCollection.someArrayMethod().map(...).reduce(...), ...
-    }
-  })
-};
+      return {
+          name:author,
+          numWords: Article.all.filter(function(article){
+            return article.author == author
+          })
+          .map(function(article) {
+            return article.body.match(/\b\w+/g).length;
+          })
+          .reduce(function(a, b) {
+           return a+=b;
+          })
+      }
+    })
+  };
 
   module.Article = Article;
 })(window);
