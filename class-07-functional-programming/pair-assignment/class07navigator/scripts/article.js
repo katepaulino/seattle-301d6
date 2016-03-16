@@ -103,5 +103,13 @@ Article.numWordsByAuthor = function() {
     })
   };
 
+  Article.stats = function() {
+    return {
+      numArticles: Article.all.length,
+      numWords: Article.numWordsAll(),
+      Authors: Article.allAuthors,
+    }
+  };
+
   module.Article = Article;
 })(window);
