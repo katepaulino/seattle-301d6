@@ -22,7 +22,7 @@
   // DONE: Set up a DB table for articles.
   Article.createTable = function(callback) {
     webDB.execute(
-      'CREATE TABLE IF NOT EXISTS articleTable (id integer, title varchar, category varchar, author varchar, publishedOn date)',
+      'CREATE TABLE IF NOT EXISTS articleTable (id integer, title varchar, category varchar, author varchar, publishedOn date, body varchar)',
        // what SQL command do we run here inside these quotes?
       function(result) {
         console.log('Successfully set up the articles table.', result);
@@ -45,8 +45,8 @@
     webDB.execute(
       [
         {
-          'sql': 'INSERT INTO articleTable (title, category, author, publishedOn) VALUES (?, ?, ?, ?);',
-          'data': [this.title, this.category, this.author, this.publishedOn],
+          'sql': 'INSERT INTO articleTable (title, category, author, publishedOn, body) VALUES (?, ?, ?, ?, ?);',
+          'data': [this.title, this.category, this.author, this.publishedOn, this.body],
         }
       ],
       callback
@@ -71,8 +71,8 @@
     webDB.execute(
       [
         {
-          'sql': 'UPDATE TABLE articleTable SET id=?, title=?, category=?, author=?, publishedOn=? WHERE title=?;',
-          'data': [this.id, this.title, this.category, this.author, this.publishedOn, this.title],
+          'sql': 'UPDATE TABLE articleTable SET id=?, title=?, category=?, author=?, publishedOn=?, body=? WHERE title=?;',
+          'data': [this.id, this.title, this.category, this.author, this.publishedOn, this.body, this.title],
         }
       ],
       callback
@@ -102,7 +102,7 @@
           rawData.forEach(function(item) {
             var article = new Article(item); // Instantiate an article based on item from JSON
             // DONE: Cache the newly-instantiated article in the DB: (what can we call on each 'article'?)
-            Article.insertRecord();
+            article.insertRecord();
           });
           // Now get ALL the records out the DB, with their database IDs:
           webDB.execute('SELECT * FROM articleTable', function(rows) { // DONE: select our now full table
@@ -110,7 +110,6 @@
             // and 2nd - pass control to the view by calling whatever function argument was passed in.
             Article.loadAll(rows);
             next();
-
           });
         });
       }
