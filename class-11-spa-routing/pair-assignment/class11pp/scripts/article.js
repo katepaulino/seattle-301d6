@@ -142,13 +142,5 @@
     });
   };
 
-  Article.stats = function() {
-    return {
-      numArticles: Article.all.length,
-      numWords: Article.numwords(),
-      Authors: Article.allAuthors(),
-    };
-  };
-
   module.Article = Article;
 })(window);
