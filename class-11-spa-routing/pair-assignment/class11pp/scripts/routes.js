@@ -4,5 +4,5 @@
 page('/', articlesController.index);
 page('/about', aboutController.index);
 
-// TODO: What function do we call to activate page.js? Fire it off now, to execute
+// DONE: What function do we call to activate page.js? Fire it off now, to execute
 page();

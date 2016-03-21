@@ -9,11 +9,11 @@
 
   // DONE: Also be sure to hide all the main section elements, and reveal the #articles section:
   articlesController.index = function() {
-      $('.main-nav').on('click', '.tab', function(e) {
-        $('.tab-content').hide();
-        $('#articles').click();
-      });
-    };
+    $('.main-nav').on('click', '.tab', function(e) {
+      $('.tab-content').hide();
+      $('#articles').show();
+    });
+  };
 
 
 
