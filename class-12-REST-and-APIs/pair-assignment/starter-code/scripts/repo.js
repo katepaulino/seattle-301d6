@@ -5,13 +5,15 @@
 
   repos.requestRepos = function(view) {
     // DONE: How would you like to fetch your repos? Don't forget to call the callback.
+    console.log('repos.requestRepos');
     $.ajax({
-      url: 'https://api.guthub.com/users/katepaulino/repos' +
+      url: 'https://api.github.com/users/katepaulino/repos' +
         '?per_page=5&sort=updated',
-      headers: {'Authorization': 'token ' + githubToken}
+      headers: {'Authorization': 'token ' + githubToken},
       success: function (data) {
-        repos.all.push(data);
+        repos.all=data;
         view(data);
+
       }
     });
   };
