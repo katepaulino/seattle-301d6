@@ -12,6 +12,7 @@
   // TODO: Remember that new Handlebars template? Let's compile it!
   // Save the result in this `render` variable.
   var render;
+  
 
   // DONE: If all the data is loaded, we can prep the UI and render the repos.
   repoView.index = function() {
