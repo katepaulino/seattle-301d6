@@ -3,9 +3,16 @@
 
   repos.all = [];
 
-  repos.requestRepos = function(callback) {
-    // TODO: How would you like to fetch your repos? Don't forget to call the callback.
-
+  repos.requestRepos = function(view) {
+    // DONE: How would you like to fetch your repos? Don't forget to call the callback.
+    $.ajax({
+      url: 'https://api.guthub.com/users/katepaulino/repos' +
+        '?per_page=5&sort=updated',
+      headers: {'Authorization': 'token ' + githubToken}
+      success: function (data) {
+        view(data);
+      }
+    });
   };
 
   // DONE: Model method that filters the full collection for repos with a particular attribute.
