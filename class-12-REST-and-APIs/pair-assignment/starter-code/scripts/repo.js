@@ -10,6 +10,7 @@
         '?per_page=5&sort=updated',
       headers: {'Authorization': 'token ' + githubToken}
       success: function (data) {
+        repos.all.push(data);
         view(data);
       }
     });
