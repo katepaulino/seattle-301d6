@@ -30,20 +30,20 @@
   };
 
   // COMMENT: What does this method do?  What is it's execution path?
-  articlesController.loadByCategory = function(ctx, next) {
-    var categoryData = function(articlesInCategory) {
-      ctx.articles = articlesInCategory;
-      next();
+  articlesController.loadByCategory = function(ctx, next) { // the loadByCategory method on articlesController object assigned to the function with parameters of ctx and next
+    var categoryData = function(articlesInCategory) { // delcare the categoryData variable and assigning to the function articlesInCategory
+      ctx.articles = articlesInCategory; //setting the articles property on the context object to articlesInCategory
+      next(); //callback function to fire when page.js locates /category/:categoryName
     };
 
     Article.findWhere('category', ctx.params.categoryName, categoryData);
   };
 
   // COMMENT: What does this method do?  What is it's execution path?
-  articlesController.loadAll = function(ctx, next) {
-    var articleData = function(allArticles) {
-      ctx.articles = Article.all;
-      next();
+  articlesController.loadAll = function(ctx, next) { //the loadAll method on articlesController object assigned to the function with parameters of ctx and next
+    var articleData = function(allArticles) { //delcare the articleData variable and assigning to the function allArticles
+      ctx.articles = Article.all; //setting the articles property on the context object to Article.all
+      next(); //callback function to fire when page.js routes to the main page
     };
 
     if (Article.all.length) {
