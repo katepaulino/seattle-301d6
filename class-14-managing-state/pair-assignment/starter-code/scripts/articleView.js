@@ -118,17 +118,17 @@
   };
 
   // COMMENT: What does this method do?  What is it's execution path?
-  articleView.index = function(articles) {
-    $('#articles').show().siblings().hide();
+  articleView.index = function(articles) { // index method on articleView objected assigned to function(articles)
+    $('#articles').show().siblings().hide(); //jQuery selects the id articles we chain .show.siblings.hide which will hide content
 
-    $('#articles article').remove();
-    articles.forEach(function(a) {
-      $('#articles').append(render(a));
+    $('#articles article').remove(); //select article tag child of articles and take it out of the DOM
+    articles.forEach(function(a) { // for each element in the articles array of objects, we append the data in the array to the articles ID in the DOM tree
+      $('#articles').append(render(a)); //we put it back into the DOM
     });
 
-    articleView.populateFilters();
+    articleView.populateFilters();  // Here we just call our populateFilters method on the articleView object in our articleView.js file
     // COMMENT: What does this method do?  What is it's execution path?
-    articleView.handleFilters();
+    articleView.handleFilters();  // Here we just call our handleFilters method on the articleView object in our articleView.js file
 
     // DONE: Replace setTeasers with just the truncation logic, if needed:
     if ($('#articles article').length > 1) {
