@@ -13,8 +13,8 @@
   };
 
   // COMMENT: What does this method do?  What is it's execution path?
-  articleView.populateFilters = function() {
-    var options,
+  articleView.populateFilters = function() { // We have the populateFilters method on the articleView object and we're setting it to this function
+    var options, // declaring the variable options and template, and setting it to the compile method on the Handlebars object, which is selecting the option-template ID and running the .text method to update the HTML
       template = Handlebars.compile($('#option-template').text());
 
     // Example of using model method with FP, synchronous approach:
@@ -38,9 +38,9 @@
   };
 
   // COMMENT: What does this method do?  What is it's execution path?
-  articleView.handleFilters = function() {
-    $('#filters').one('change', 'select', function() {
-      resource = this.id.replace('-filter', '');
+  articleView.handleFilters = function() { // applying the handleFilters method on the articleView object, setting it to this function
+    $('#filters').one('change', 'select', function() { // select the filters ID and apply the .one method (which runs the function once), so on change, the objects are selected
+      resource = this.id.replace('-filter', ''); // the variable resource is being set to create a new string once the specific ID is located (ask????)
       page('/' + resource + '/' + $(this).val().replace(/\W+/g, '+')); // Replace any/all whitespace with a +
     });
   };

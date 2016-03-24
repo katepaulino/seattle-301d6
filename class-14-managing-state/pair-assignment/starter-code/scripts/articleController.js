@@ -8,6 +8,7 @@
   };
 
   // COMMENT: What does this method do?  What is it's execution path?
+  //
   articlesController.loadById = function(ctx, next) {
     var articleData = function(article) {
       ctx.articles = article;
